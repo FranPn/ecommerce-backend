@@ -18,7 +18,7 @@ This is a simple backend for an ecommerce system built with:
 ---
 
 ## 🚀 Project Structure
-
+```
 /cmd/server/             # Application entrypoint
 /internal/
     /controllers/         # HTTP handlers
@@ -34,7 +34,7 @@ docker-compose.yml        # Local development with Docker (optional)
 .env                      # Environment variables
 .gitignore                # Git ignore rules
 README.md                 # Project documentation
-
+```
 ---
 
 ## 🛠️ How to run locally (without Docker)
