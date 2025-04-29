@@ -1,0 +1,12 @@
+# Ignore environment variables
+.env
+
+# Ignore compiled binary
+bin/
+
+# Ignore dependency folder
+vendor/
+
+# Ignore OS files
+*.exe
+*.log
