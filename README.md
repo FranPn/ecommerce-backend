@@ -46,3 +46,17 @@ README.md                 # Project documentation
 ```bash
 psql -U postgres
 CREATE DATABASE ecommerce_db;
+
+```
+## 💻 Technologies Used
+
+- Go (Golang) 1.24.2
+- Gin (Web framework)
+- GORM (ORM)
+- PostgreSQL 17
+- bcrypt (Password hashing)
+- JWT (Token-based authentication)
+- Docker (optional)
+- Makefile
+- Git & GitHub
+```
