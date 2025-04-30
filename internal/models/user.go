@@ -8,4 +8,5 @@ type User struct {
 	Username string `gorm:"unique" json:"username"`
 	Email    string `gorm:"unique" json:"email"`
 	Password string `json:"-"`
+	IsAdmin  bool   `json:"is_admin" gorm:"default:false"`
 }

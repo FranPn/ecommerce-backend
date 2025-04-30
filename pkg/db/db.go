@@ -27,8 +27,8 @@ func ConnectDatabase() {
 		log.Fatal("Failed to connect to database:", err)
 	}
 
-	// Automatically migrate the User model
-	err = database.AutoMigrate(&models.User{})
+	// Automatically migrate models
+	err = database.AutoMigrate(&models.User{}, &models.Product{})
 	if err != nil {
 		log.Fatal("Failed to run migrations:", err)
 	}
