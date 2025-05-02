@@ -17,17 +17,14 @@ func SetupRoutes(router *gin.Engine) {
 	protected := router.Group("/api")
 	protected.Use(middleware.AuthMiddleware())
 
-	// User
+	// User routes
 	protected.GET("/profile", controllers.Profile)
 
-	// Product
-	protected.POST("/products", controllers.CreateProduct)
+	// Public product access
 	protected.GET("/products", controllers.GetAllProducts)
 	protected.GET("/products/:id", controllers.GetProductByID)
-	protected.PUT("/products/:id", controllers.UpdateProduct)
-	protected.DELETE("/products/:id", controllers.DeleteProduct)
 
-	// Admin-only product routes
+	// Admin-only routes
 	admin := protected.Group("/")
 	admin.Use(middleware.AdminMiddleware())
 	admin.POST("/products", controllers.CreateProduct)
