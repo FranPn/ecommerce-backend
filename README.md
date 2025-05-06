@@ -1,19 +1,25 @@
-# Ecommerce Backend (Golang + PostgreSQL)
+# Ecommerce Backend (Golang + PostgreSQL + Meilisearch)
 
-This is a simple backend for an ecommerce system built with:
-- Golang (1.24.2)
-- Gin web framework
+This is a modular backend API for an ecommerce platform, built with:
+- Golang 1.24.2
+- PostgreSQL 17
 - GORM for ORM (PostgreSQL)
-- JWT authentication
-- Docker ready (optional)
+- Gin web framework
+- Meilisearch for full-text product search
+- JWT-based authentication (admin/user)
+- Docker-ready setup (optional)
 
 ## 📦 Features
-- User registration (`/register`)
-- User login (`/login`)
-- JWT-based authentication
-- Protected routes (`/api/profile`)
-- Passwords are hashed securely with bcrypt
-- Ready to run locally or with Docker Compose
+
+- ✅ User registration and login with JWT
+- ✅ Role-based access (admin vs user)
+- ✅ Password hashing (bcrypt)
+- ✅ CRUD for products
+- ✅ Full-text product search with Meilisearch
+- ✅ Protected profile route (`/api/profile`)
+- ✅ Admin-only product creation/edit/delete
+- ✅ Graceful concurrency handling with goroutines
+- ✅ Ready to deploy or extend (e.g. orders, cart, frontend)
 
 ---
 
@@ -27,7 +33,10 @@ This is a simple backend for an ecommerce system built with:
     /middleware/          # JWT authentication middleware
     /utils/               # Utility functions (JWT, hashing)
     /routes/              # API routing
-/pkg/db/                  # Database connection
+/pkg/
+    /db/                  # Database connection
+    /search/              # Meilisearch integration
+    /utils/               # JWT utils, password hashing
 Makefile                  # Automation commands
 Dockerfile                # Build instructions for Go app (optional)
 docker-compose.yml        # Local development with Docker (optional)
@@ -39,7 +48,11 @@ README.md                 # Project documentation
 
 ## 🛠️ How to run locally (without Docker)
 
-1. **Install Go 1.24.2+ and PostgreSQL 17+**
+1. **Install dependencies**
+
+- [Go 1.24.2](https://golang.org/dl/)
+- [PostgreSQL 17](https://www.postgresql.org/)
+- [Meilisearch](https://www.meilisearch.com/) (`localhost:7700`)
 
 2. **Create a PostgreSQL database**
 
