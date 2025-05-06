@@ -4,6 +4,7 @@ import (
 	"ecommerce-backend/internal/config"
 	"ecommerce-backend/internal/routes"
 	"ecommerce-backend/pkg/db"
+	"ecommerce-backend/pkg/search"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -15,6 +16,9 @@ func main() {
 
 	// Connect to the database
 	db.ConnectDatabase()
+
+	// Initialize Meilisearch
+	search.Init()
 
 	// Create a new Gin router
 	router := gin.Default()
