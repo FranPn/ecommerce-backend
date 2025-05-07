@@ -13,24 +13,28 @@ func SetupRoutes(router *gin.Engine) {
 	router.POST("/register", controllers.Register)
 	router.POST("/login", controllers.Login)
 
-	// Protected routes
+	// Protected routes (requires JWT)
 	protected := router.Group("/api")
 	protected.Use(middleware.AuthMiddleware())
 
 	// User routes
 	protected.GET("/profile", controllers.Profile)
 
-	// Public product access
+	// Product access (view)
 	protected.GET("/products", controllers.GetAllProducts)
 	protected.GET("/products/:id", controllers.GetProductByID)
 
-	// Returns order history for authenticated user
-	protected.GET("/orders", controllers.GetUserOrders)
+	// Order routes for authenticated users
+	protected.GET("/orders", controllers.GetUserOrders) // View order history
+	protected.POST("/orders", controllers.CreateOrder)  // Create new order from input
 
-	// Creates a new order with selected products for the logged-in user
-	protected.POST("/orders", controllers.CreateOrder)
+	// Cart routes for authenticated users
+	protected.POST("/cart", controllers.AddToCart)                    // Add or update item
+	protected.GET("/cart", controllers.GetCart)                       // View cart
+	protected.DELETE("/cart/:product_id", controllers.RemoveFromCart) // Remove item
+	protected.POST("/cart/checkout", controllers.CheckoutCart)        // Checkout the cart and create an order
 
-	// Admin-only routes
+	// Admin-only product routes
 	admin := protected.Group("/")
 	admin.Use(middleware.AdminMiddleware())
 	admin.POST("/products", controllers.CreateProduct)

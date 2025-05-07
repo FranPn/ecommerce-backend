@@ -33,6 +33,7 @@ func ConnectDatabase() {
 		&models.Product{},
 		&models.Order{},
 		&models.OrderItem{},
+		&models.CartItem{},
 	)
 	if err != nil {
 		log.Fatal("Failed to run migrations:", err)
