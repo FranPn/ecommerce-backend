@@ -24,6 +24,12 @@ func SetupRoutes(router *gin.Engine) {
 	protected.GET("/products", controllers.GetAllProducts)
 	protected.GET("/products/:id", controllers.GetProductByID)
 
+	// Returns order history for authenticated user
+	protected.GET("/orders", controllers.GetUserOrders)
+
+	// Creates a new order with selected products for the logged-in user
+	protected.POST("/orders", controllers.CreateOrder)
+
 	// Admin-only routes
 	admin := protected.Group("/")
 	admin.Use(middleware.AdminMiddleware())

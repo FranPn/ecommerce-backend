@@ -40,6 +40,24 @@ func AuthMiddleware() gin.HandlerFunc {
 			return
 		}
 
+		// Extract user_id from token claims
+		claims, ok := token.Claims.(jwt.MapClaims)
+		if !ok || claims["user_id"] == nil {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token claims"})
+			c.Abort()
+			return
+		}
+
+		userIDFloat, ok := claims["user_id"].(float64)
+		if !ok {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid user ID in token"})
+			c.Abort()
+			return
+		}
+
+		userID := uint(userIDFloat)
+		c.Set("user_id", userID) // ✅ Make user ID available in context
+
 		c.Next()
 	}
 }

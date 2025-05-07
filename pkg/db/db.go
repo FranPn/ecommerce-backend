@@ -28,7 +28,12 @@ func ConnectDatabase() {
 	}
 
 	// Automatically migrate models
-	err = database.AutoMigrate(&models.User{}, &models.Product{})
+	err = database.AutoMigrate(
+		&models.User{},
+		&models.Product{},
+		&models.Order{},
+		&models.OrderItem{},
+	)
 	if err != nil {
 		log.Fatal("Failed to run migrations:", err)
 	}
